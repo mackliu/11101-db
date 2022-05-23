@@ -189,6 +189,31 @@
 	          `students`.`status_code`=`status`.`code` &&
               `students`.`dept`=`dept`.`id`
       </li>
+      <li>
+        SELECT `dept`.`name` as "科系",
+                GROUP_CONCAT(`students`.`name`) as "學生"
+        FROM `students`,`dept`,`class_student`
+        WHERE `students`.`dept`=`dept`.`id` && 
+                `students`.`school_num`=`class_student`.`school_num` &&
+                `class_student`.`class_code`=101
+        GROUP BY `dept`.`name`
+      </li>
+  </ul>
+   <h3>聯表查詢-Out Join</h3>
+   <ul>
+      <li>SELECT `dept`.`name`,count(*) as '人數' FROM `dept`,`students` WHERE `students`.`dept`=`dept`.`id` GROUP By `students`.`dept`</li>
+      <li>
+        SELECT `dept`.`name`,
+		count(`students`.`id`) as '人數' 
+FROM `dept`
+LEFT JOIN `students` 
+ON `students`.`dept`=`dept`.`id`
+GROUP By `dept`.`name`
+
+      </li>
+      <li></li>
+      <li></li>
+      <li></li>
   </ul>
 </body>
 </html>
