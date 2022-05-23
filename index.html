@@ -204,14 +204,28 @@
       <li>SELECT `dept`.`name`,count(*) as '人數' FROM `dept`,`students` WHERE `students`.`dept`=`dept`.`id` GROUP By `students`.`dept`</li>
       <li>
         SELECT `dept`.`name`,
-		count(`students`.`id`) as '人數' 
-FROM `dept`
-LEFT JOIN `students` 
-ON `students`.`dept`=`dept`.`id`
-GROUP By `dept`.`name`
-
+		        count(`students`.`id`) as '人數' 
+        FROM `dept`
+        LEFT JOIN `students` 
+        ON `students`.`dept`=`dept`.`id`
+        GROUP By `dept`.`name`
       </li>
-      <li></li>
+      <li>
+        SELECT `students`.`id`,
+                `students`.`name`,
+                `students`.`birthday`,
+                `students`.`uni_id`,
+                `dept`.`name` as '科系',
+                `graduate_school`.`name` as '畢業國中' ,
+                `status`.`status` as '畢業狀態'
+        FROM `students`
+        LEFT JOIN `graduate_school` 
+             ON `students`.`graduate_at`=`graduate_school`.`id`
+        LEFT JOIN `status` 
+             ON `students`.`status_code`=`status`.`code`
+        LEFT JOIN `dept` 
+             ON `students`.`dept`=`dept`.`id`
+      </li>
       <li></li>
       <li></li>
   </ul>
