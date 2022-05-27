@@ -9,6 +9,25 @@
         h1,h2,h3,h4{
             text-align: center;
         }
+        table{
+            border-collapse: collapse;
+            border:3px solid blue;
+            margin: auto;
+        }
+        table td{
+            padding:0.5rem;
+            border:1px solid #aaa;
+        }
+        table tr:nth-child(odd){
+            background: lightgreen;
+        }
+        table tr:nth-child(even){
+            background: lightcyan;
+        }
+        table tr:hover{
+            background: lightcoral;
+        }
+
     </style>
 </head>
 <body>
@@ -19,15 +38,19 @@
     
     $sql="SELECT `students`.*,`dept`.`code`,`dept`.`name` as '科系' FROM `students`,`dept` WHERE `dept`.`id`=`students`.`dept`";
 
-    $rows=$pdo->query($sql)->fetchAll(PDO::FETCH_BOTH);
+    $rows=$pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-    echo "<pre>";
-    print_r($rows);
-    echo "</pre>";
-
-/*     echo $rows[0][3];
-    echo "<br>";
-    echo $rows[0]['birthday']; */
+    echo "<table>";
+    foreach($rows as $row){
+        echo "<tr>";
+            echo "<td>{$row['id']}</td>";
+            echo "<td>{$row['school_num']}</td>";
+            echo "<td>{$row['name']}</td>";
+            echo "<td>{$row['科系']}</td>";
+            echo "<td>{$row['parents']}</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
     ?>
 </body>
 </html>
