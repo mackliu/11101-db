@@ -14,20 +14,25 @@
 <body>
     <h1>php連線資料庫</h1>
     <?php
-    $dsn="mysql:host=localhost;charset=utf8;dbname=school2";
-    $pdo=new PDO($dsn,'root','');
-    
+    /* $dsn="mysql:host=localhost;charset=utf8;dbname=school2";
+    $pdo=new PDO($dsn,'root',''); */
+    $conn=mysqli_connect('localhost','root','','school2');
+
     $sql="SELECT `students`.*,`dept`.`code`,`dept`.`name` as '科系' FROM `students`,`dept` WHERE `dept`.`id`=`students`.`dept`";
+        
+    //$rows=$pdo->query($sql)->fetchAll(PDO::FETCH_BOTH);
+    $query=mysqli_query($conn,$sql);
+    $rows=mysqli_fetch_all($query,MYSQLI_BOTH);
 
-    $rows=$pdo->query($sql)->fetchAll(PDO::FETCH_BOTH);
+    //echo var_dump($query);
 
-    echo "<pre>";
+    /* echo "<pre>";
     print_r($rows);
-    echo "</pre>";
+    echo "</pre>"; */
 
-/*     echo $rows[0][3];
+    echo $rows[0][3];
     echo "<br>";
-    echo $rows[0]['birthday']; */
+    echo $rows[0]['birthday'];
     ?>
 </body>
 </html>
