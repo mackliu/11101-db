@@ -51,6 +51,7 @@
         <td>科系</td>
         <td>父母</td>
         <td>畢業國中</td>
+        <td>操作</td>
     </tr>
 <?php
     foreach($rows as $key => $row){
@@ -61,6 +62,9 @@
             echo "<td>{$row['major']}</td>";
             echo "<td>{$row['parent']}</td>";
             echo "<td>{$row['secondary']}</td>";
+            echo "<td>";
+            echo "<button><a href='edit.php?id={$row['id']}'>編輯</a></button>";
+            echo "</td>";
         echo "</tr>";
     }
     echo "</table>";
