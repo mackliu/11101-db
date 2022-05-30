@@ -25,7 +25,6 @@
         $pdo=new PDO($dsn,'root','');
         $sql="SELECT * FROM `students` WHERE `id`='$id'";
         $student=$pdo->query($sql)->fetch();
-
     ?>
     <form action="update.php" method="post">
         <label for="">學號：<input type="text" name="uni_id" value="<?=$student['uni_id'];?>"></label>
